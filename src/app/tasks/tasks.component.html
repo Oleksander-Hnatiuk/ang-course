@@ -1,0 +1,31 @@
+<section>
+  <header>
+    <h2>{{ user.name }}</h2>
+    @if(creationMode) {
+      <app-new-task 
+        [userId]="user.id"
+        (cancelNewTask)="onToggleCrationMode()" 
+        (onSubmitNewTask)="saveNewTask($event)" 
+      />
+    } @else {
+      <menu>
+        <button (click)="onToggleCrationMode()">Add task</button>
+      </menu>
+    }
+  </header>
+  <p>{{ log(allTasks())}}</p>
+  @if (userTasks().length) {
+    <ul>
+      @for (task of userTasks(); track task.id) {
+        <li>
+          <app-task 
+            [task]="task" 
+            (complete)="completeCallback($event)" 
+          /> <!-- Here, we listen to our event complete, that we dispatched from Task -->
+        </li>
+      }
+    </ul>
+  } @else {
+    <p>Create a Task!</p>
+  }
+</section>

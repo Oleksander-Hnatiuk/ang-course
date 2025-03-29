@@ -1,0 +1,14 @@
+<section>
+  <fieldset>
+    <label for="title">Title</label>
+    <input id="title" name="title" (input)="inputChange($event)" />
+  </fieldset>
+  <fieldset>
+    <label for="summary">Sammary</label>
+    <textarea id="summary" name="summary" (input)="inputChange($event)"></textarea>
+  </fieldset>
+  <menu>
+    <button (click)="onCancelNewTask()">Cancel</button>
+    <button (click)="onSubmit()">Add</button>
+  </menu>
+</section>
