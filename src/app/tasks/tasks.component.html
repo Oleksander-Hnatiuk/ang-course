@@ -1,19 +1,19 @@
-<section>
+@if(creationMode) {
+  <app-new-task 
+    [userId]="user.id"
+    (cancelNewTask)="onToggleCrationMode()" 
+    (onSubmitNewTask)="saveNewTask($event)" 
+  />
+}
+
+<section id="tasks">
   <header>
     <h2>{{ user.name }}</h2>
-    @if(creationMode) {
-      <app-new-task 
-        [userId]="user.id"
-        (cancelNewTask)="onToggleCrationMode()" 
-        (onSubmitNewTask)="saveNewTask($event)" 
-      />
-    } @else {
-      <menu>
-        <button (click)="onToggleCrationMode()">Add task</button>
-      </menu>
-    }
+    <menu>
+      <button (click)="onToggleCrationMode()">Add task</button>
+    </menu>
   </header>
-  <p>{{ log(allTasks())}}</p>
+  
   @if (userTasks().length) {
     <ul>
       @for (task of userTasks(); track task.id) {

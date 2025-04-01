@@ -3,7 +3,7 @@ import { dummyTasks } from '../mocks/tasks';
 import { TaskComponent } from "./task/task.component";
 import { User } from '../user/user.model';
 import { NewTaskComponent } from './new/new-task.component';
-import { NewTask, Task } from './tasks.model';
+import { Task } from './tasks.model';
 
 @Component({
   selector: 'app-tasks',
@@ -46,14 +46,12 @@ export class TasksComponent {
     this.creationMode = !this.creationMode;
   }
 
-  saveNewTask(data: NewTask) {
-    
+  saveNewTask(data: Task) {
     this.allTasks.set([
       ...this.allTasks(),
       {
         id: `t${this.allTasks().length + 1}`,
         ...data,
-        dueDate: new Date().toLocaleDateString(),
       }
     ])
   }
